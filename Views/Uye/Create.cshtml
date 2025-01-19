@@ -1,0 +1,26 @@
+@model Uye
+
+
+<h2>Üye Ekle</h2>
+<hr>
+<form asp-controller="Uye" asp-action="Create" method="post">
+    <div class="mb-3">
+        <label asp-for="UyeAd" class="form-label">Üye Adı</label>
+        <input asp-for="UyeAd" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label asp-for="UyeSoyad" class="form-label">Üye Soyadı</label>
+        <input asp-for="UyeSoyad" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label asp-for="UyeEposta" class="form-label">Üye E-posta</label>
+        <input asp-for="UyeEposta" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label asp-for="UyeTelefon" class="form-label">Üye Telefon</label>
+        <input asp-for="UyeTelefon" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+
+</form>

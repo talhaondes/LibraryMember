@@ -1,0 +1,35 @@
+@model IEnumerable<Kitap>
+
+    <h2>Kitaplar</h2>
+    <hr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Kitap Id</th>            
+                <th>Kitap Adı</th>
+                <th>Kitap Tür</th>
+                <th>Kitap Stoku</th>
+                <th>İşlemler</th>
+                <th></th>
+            </tr>
+        </thead>
+            <tbody>
+                @foreach(var book in Model)
+                {
+                    <tr>
+                        <td>@book.KitapID</td>
+                        <td>@book.KitapAd</td>
+                        <td>@book.KitapTur</td>
+                        <td>@book.KitapStok</td>                      
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@book.KitapID" class="btn btn-sm btn-primary">Düzenle</a>
+                            <a asp-action="Delete" asp-route-id="@book.KitapID" class="btn btn-sm btn-danger">Sil</a>
+                        </td>
+    
+    
+                    </tr>
+                }
+            </tbody>
+            
+    
+    </table>

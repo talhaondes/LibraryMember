@@ -1,0 +1,17 @@
+@model Kiralama
+
+<h2>Kiralama Tarihi Düzenle</h2>
+<hr>
+<div class="row">
+    <div class="col-8">
+        <form asp-controller="Kiralama" asp-action="Edit" method="post">
+            <input type="hidden" asp-for="KiralamaID" />
+            <div class="mb-3">
+                <label asp-for="KiralamaTarihi" class="form-label">Kiralama Tarihi</label>
+                <!-- Date input için value eklemeden sadece asp-for kullanıyoruz -->
+                <input asp-for="KiralamaTarihi" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+        </form>
+    </div>
+</div>

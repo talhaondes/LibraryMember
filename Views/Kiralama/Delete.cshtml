@@ -1,0 +1,13 @@
+@model Kiralama
+
+<h2>Kiralama Silme Onayı</h2>
+
+<p>Seçilen kiralamayı silmek istediğinizden emin misiniz?</p>
+
+<form asp-action="Delete" method="post">
+    <!-- Silinecek kiralama ID'sini gizli alan olarak gönderiyoruz -->
+    <input type="hidden" name="id" value="@Model.KiralamaID" />
+
+    <button type="submit" class="btn btn-danger">Evet</button>
+    <a asp-action="Index" class="btn btn-success">Hayır</a>
+</form>

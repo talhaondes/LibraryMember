@@ -1,0 +1,35 @@
+@model Kitap
+
+
+<h2>Kitap Düzenle</h2>
+<hr>
+<div class="row">
+    <div class="col-8">
+        <form asp-controller="Kitap" asp-action="Edit" method="post">
+            <input type="hidden" asp-for="KitapID">
+            <div class="mb-3">
+                <label asp-for="KitapAd" class="form-label">Kitap Adı</label>
+                <input asp-for="KitapAd" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label asp-for="KitapTur" class="form-label">Kitap Türü</label>
+                <input asp-for="KitapTur" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label asp-for="KitapStok" class="form-label">Kitap Stok Miktarı</label>
+                <input asp-for="KitapStok" class="form-control" type="number" min="0">
+            </div>
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+        </form>
+    </div>
+    <div class="col-4">
+        <h4>Üyeler</h4>
+        <hr>
+        <ul>
+            @foreach(var there in @Model.Kiralamalar)
+            {
+                <li>@there.Uye.AdSoyad</li>
+            }
+        </ul>
+    </div>
+</div>

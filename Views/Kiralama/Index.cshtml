@@ -1,0 +1,35 @@
+@model IEnumerable<Kiralama>
+
+    <h2>Kitaplar Kiralama Bilgileri</h2>
+    <hr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th style="width: 150px;">@Html.DisplayNameFor(k=>k.KiralamaID)</th>
+                <th>Üye Ad Soyad</th>            
+                <th>Kitap Ad</th>
+                <th>@Html.DisplayNameFor(k=>k.KiralamaTarihi)</th>
+                <th>İşlemler</th>
+                <th></th>
+            </tr>
+        </thead>
+            <tbody>
+                @foreach(var rent in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem=>rent.KiralamaID)</td>                      
+                        <td>@Html.DisplayFor(modelItem=>rent.Uye.AdSoyad)</td>
+                        <td>@Html.DisplayFor(modelItem=>rent.Kitap.KitapAd)</td>
+                        <td>@Html.DisplayFor(modelItem=>rent.KiralamaTarihi)</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@rent.KiralamaID" class="btn btn-sm btn-primary">Düzenle</a>
+                            <a asp-action="Delete" asp-route-id="@rent.KiralamaID" class="btn btn-sm btn-danger">Sil</a>
+                        </td>
+    
+    
+                    </tr>
+                }
+            </tbody>
+            
+    
+    </table>

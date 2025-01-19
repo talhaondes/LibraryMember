@@ -1,0 +1,31 @@
+@model Kiralama
+
+<h2>Kitap Ödünç Verme</h2>
+
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label asp-for="UyeID" class="form-label">Üye Seç</label>
+        <select asp-for="UyeID" class="form-control" asp-items="ViewBag.Uyeler">
+            <option value="">Üye Seçiniz</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="KitapID" class="form-label">Kitap Seç</label>
+        <select asp-for="KitapID" class="form-control" asp-items="ViewBag.Kitaplar">
+            <option value="">Kitap Seçiniz</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="KiralamaTarihi" class="form-label">Alış Tarihi</label>
+        <input asp-for="KiralamaTarihi" class="form-control" type="date">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="IadeTarihi" class="form-label">Teslim Tarihi</label>
+        <input asp-for="IadeTarihi" class="form-control" type="date">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+</form>

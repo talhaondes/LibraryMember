@@ -1,0 +1,10 @@
+@model Uye
+
+<p>
+    <b>@Model.UyeAd  @Model.UyeSoyad</b> isimli üye silinecek onaylıyor musun?
+    <form action="Delete" method="post">
+        <input type="hidden" name="id" value="@Model.UyeID">
+        <button type="submit" class="btn btn-danger">Evet</button>
+        <a asp-action="Index" class="btn btn-success">Hayır</a>
+    </form>
+</p>

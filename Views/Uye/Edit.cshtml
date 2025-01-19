@@ -1,0 +1,39 @@
+@model Uye
+
+
+<h2>Üye Düzenle</h2>
+<hr>
+<div class="row">
+    <div class="col-8">    
+        <form asp-controller="Uye" asp-action="Edit" method="post">
+        <input type="hidden" asp-for="UyeID">
+        <div class="mb-3">
+            <label asp-for="UyeAd" class="form-label">Üye Adı</label>
+            <input asp-for="UyeAd" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label asp-for="UyeSoyad" class="form-label">Üye Soyadı</label>
+            <input asp-for="UyeSoyad" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label asp-for="UyeEposta" class="form-label">Üye E-posta</label>
+            <input asp-for="UyeEposta" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label asp-for="UyeTelefon" class="form-label">Üye Telefon</label>
+            <input asp-for="UyeTelefon" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Kaydet</button>
+    </form>
+</div>
+    <div class="col-4">
+        <h4>Üyenin Aldığı Kitaplar</h4>
+        <hr>
+        <ul>
+            @foreach(var have in @Model.Kiralamalar)
+            {
+                <li>@have.Kitap.KitapAd</li>
+            }
+        </ul>
+    </div>
+</div>

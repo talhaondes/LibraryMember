@@ -1,0 +1,21 @@
+@model Kitap
+
+
+<h2>Kitap Ekle</h2>
+<hr>
+<form asp-controller="Kitap" asp-action="Create" method="post">
+    <div class="mb-3">
+        <label asp-for="KitapAd" class="form-label">Kitap Adı</label>
+        <input asp-for="KitapAd" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label asp-for="KitapTur" class="form-label">Kitap Türü</label>
+        <input asp-for="KitapTur" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label asp-for="KitapStok" class="form-label">Kitap Stok Miktarı</label>
+        <input asp-for="KitapStok" class="form-control" type="number" min="0">
+    </div>
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+
+</form>
