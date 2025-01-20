@@ -40,7 +40,7 @@ namespace KutuphaneUye.Controllers
             {
                 return NotFound();
             }
-
+        
             // Kitap stok kontrolü
             if (kitap.KitapStok <= 0)
             {
@@ -50,17 +50,11 @@ namespace KutuphaneUye.Controllers
                 ViewBag.Kitaplar = new SelectList(await _context.Kitaplar.ToListAsync(), "KitapID", "KitapAd");
                 return View(model);
             }
-
             // Kiralama kaydını ekle
             _context.Kiralamalar.Add(model);
-
             // Kitap stok miktarını 1 azalt
             kitap.KitapStok -= 1;
-
-            // Değişiklikleri kaydet
             await _context.SaveChangesAsync();
-
-            // Başarılı işlemden sonra kullanıcıyı yönlendir
             return RedirectToAction("Index");
         }
         [HttpGet]
@@ -84,17 +78,28 @@ namespace KutuphaneUye.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete([FromForm]int id)
         {
-            var kira = await _context.Kiralamalar.FindAsync(id);  // Kiralama kaydını bul
+            // Kiralama kaydını bul
+            var kira = await _context.Kiralamalar.FindAsync(id);
             if (kira == null)
             {
                 return NotFound();  // Kiralama kaydını bulamazsak
             }
 
-            _context.Kiralamalar.Remove(kira);  // Kiralama kaydını sil
-            await _context.SaveChangesAsync();  // Değişiklikleri kaydet
+            // Kiralama kaydında hangi kitap ve üye olduğunu al
+            var kitap = await _context.Kitaplar.FindAsync(kira.KitapID);
+            if (kitap != null)
+            {
+                // Kitap stok miktarını 1 artır
+                kitap.KitapStok += 1;
+            }
+
+            // Kiralama kaydını sil
+            _context.Kiralamalar.Remove(kira);
+            await _context.SaveChangesAsync();  // await== bu işlem bitmeden geçme alt satıra, Değişiklikleri kaydet ve geç
 
             return RedirectToAction("Index", "Kitap");  // Silme işleminden sonra Kitaplar sayfasına yönlendir
         }
+
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
