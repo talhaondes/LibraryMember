@@ -23,9 +23,12 @@ namespace KutuphaneUye.Controllers
         {
             // Üye verilerini dropdown için hazırla
             ViewBag.Uyeler = new SelectList(await _context.Uyeler.ToListAsync(), "UyeID", "AdSoyad");
-            // Kitap verilerini dropdown için hazırla
-            ViewBag.Kitaplar = new SelectList(await _context.Kitaplar.ToListAsync(), "KitapID", "KitapAd");
-            
+
+            //  stokta olan kitapları filtrele
+            var stokkitap = await _context.Kitaplar.Where(k => k.KitapStok > 0).ToListAsync();   //stokta varsa göster
+
+            ViewBag.Kitaplar = new SelectList(stokkitap, "KitapID", "KitapAd");
+
             return View();
         }
         [HttpPost]
